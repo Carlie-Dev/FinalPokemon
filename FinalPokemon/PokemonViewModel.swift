@@ -7,7 +7,7 @@
 
 import Foundation
 class PokemonViewModel: ObservableObject{
-    private var name: String = ""
+    var name: String = ""
     
     func fetchPokemon(name: String) async {
         //Get pokemon by name value
@@ -23,7 +23,7 @@ class PokemonViewModel: ObservableObject{
                 let decodedResponse = try JSONDecoder().decode(PokemonResponse.self, from: data)
                 
                 DispatchQueue.main.async {
-                    self.name = decodedResponse.name
+                    
                 }
                 
             }catch {
