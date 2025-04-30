@@ -11,7 +11,10 @@ struct PokemonResponse: Codable {
     let pokemon: Pokemon
 }
 
+//Pokemon object with the values I am pulling from the API
 struct Pokemon: Codable {
     let name : String
-    let image: String
+    let base_experience: Int
+    let height: Int
+    let weight: Int
 }

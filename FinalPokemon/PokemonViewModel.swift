@@ -7,7 +7,11 @@
 
 import Foundation
 class PokemonViewModel: ObservableObject{
-    var name: String = ""
+    //Variables for the pokemon w/ defaults
+    @Published var name: String = ""
+    @Published var base_experience : Int = 0
+    @Published var height : Int = 0
+    @Published var weight : Int = 0
     
     func fetchPokemon(name: String) async {
         //Get pokemon by name value
@@ -22,8 +26,12 @@ class PokemonViewModel: ObservableObject{
             do {
                 let decodedResponse = try JSONDecoder().decode(PokemonResponse.self, from: data)
                 
+                //Getting all the values from the API
                 DispatchQueue.main.async {
-                    
+                    self.name = decodedResponse.pokemon.name
+                    self.base_experience = decodedResponse.pokemon.base_experience
+                    self.height = decodedResponse.pokemon.height
+                    self.weight = decodedResponse.pokemon.weight
                 }
                 
             }catch {
