@@ -7,14 +7,24 @@
 
 import Foundation
 
-struct PokemonResponse: Decodable {
-    let pokemon: Pokemon
-}
-
 //Pokemon object with the values I am pulling from the API
 struct Pokemon: Codable {
-    let name : String
+    let name: String
     let base_experience: Int
     let height: Int
     let weight: Int
+}
+
+struct PokemonList: Codable {
+    let results: [PokemonListEntry]
+}
+
+struct PokemonListEntry: Identifiable, Codable {
+    let name: String
+    let url: String
+    var id: String { name }
+}
+
+struct PokemonSaved: Codable {
+    let savedList: [Pokemon]
 }
