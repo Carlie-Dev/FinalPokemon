@@ -15,6 +15,8 @@ class PokemonViewModel: ObservableObject{
     
     //variable for baselist
     @Published var pokemonBaseList: [PokemonListEntry] = []
+    //Saved List
+    @Published var pokemonList: [Pokemon]=[]
     
     func fetchPokemon(name: String){
         //Get pokemon by name value
@@ -38,7 +40,7 @@ class PokemonViewModel: ObservableObject{
                     self.base_experience = decodedResponse.base_experience
                     print(self.base_experience)
                     self.height = decodedResponse.height
-                    print(self.base_experience)
+                    print(self.height)
                     self.weight = decodedResponse.weight
                     print(self.weight)
                 }
@@ -54,7 +56,7 @@ class PokemonViewModel: ObservableObject{
     }
     
     func fetchList(){
-            guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=5") else {
+            guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=10") else {
                 print("Invalid URL")
                 return
             }
@@ -77,5 +79,19 @@ class PokemonViewModel: ObservableObject{
                 }
             }.resume()
     }
+    
+    func savePokemon(){
+        if self.height != 0{
+            let temp = Pokemon(name: self.name,
+                                 base_experience: self.base_experience,
+                                 height: self.height,
+                                 weight: self.weight)
+              
+              pokemonList.append(temp)
+        }else{
+            print("No pokemon to be saved!")
+        }
+    }
+    
     
 }

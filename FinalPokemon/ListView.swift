@@ -15,12 +15,12 @@ struct ListView: View {
         VStack{
             VStack{
                 List(pokeViewModel.pokemonBaseList, id: \.name) { pokemon in
-                                Text(pokemon.name.capitalized)
+                        Text(pokemon.name.capitalized)
                             }
-                        }
-                        .onAppear {
-                            pokeViewModel.fetchList()
-                        }
+                    }
+                    .onAppear {
+                        pokeViewModel.fetchList()
+                    }
                 if pokeViewModel.name.isEmpty {
                     Text("Please enter a valid Pokemon name...")
                 }else{
@@ -37,10 +37,11 @@ struct ListView: View {
                             print ("\(pokeViewModel.name) fetched")
                         }
                     }
+                    
                 }.padding(.horizontal, 50)
             }.padding()
             
-        }
+    }
 }
       
 #Preview {

@@ -10,7 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        ListView()
+        VStack{
+            Text("Poke Dex").font(.largeTitle)
+            Text("Got to Catch 'em All!")
+            NavView()
+        }.padding(10)
+        
     }
         
 }
