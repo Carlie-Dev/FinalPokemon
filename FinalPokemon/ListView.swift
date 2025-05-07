@@ -37,9 +37,13 @@ struct ListView: View {
                     Button("Search"){
                         Task{
                             await pokeView.fetchPokemon(name: pokename)
-                            
                             print ("\(pokeView.name) fetched")
                             
+                        }
+                    }
+                    Button("Save"){
+                        Task{
+                            pokeView.savePokemon()
                         }
                     }
                     

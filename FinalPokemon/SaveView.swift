@@ -25,6 +25,7 @@ struct SaveView: View {
                         Text(pokemon.name.capitalized)
                         Spacer()
                         Text("EXP: \(pokemon.base_experience)")
+                        }
                     }
                 }
             }
