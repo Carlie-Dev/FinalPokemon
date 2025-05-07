@@ -8,23 +8,26 @@
 import SwiftUI
 
 struct ListView: View {
-    @StateObject var pokeViewModel = PokemonViewModel()
+    init(poke: PokemonViewModel){
+        self.pokeView = poke
+    }
+    @ObservedObject var pokeView: PokemonViewModel
     @State var pokename: String = ""
     var body: some View {
         //If the string for the name is empty, prompt the user to enter a pokemon's name
         VStack{
             VStack{
-                List(pokeViewModel.pokemonBaseList, id: \.name) { pokemon in
+                List(pokeView.pokemonBaseList, id: \.name) { pokemon in
                         Text(pokemon.name.capitalized)
                             }
                     }
                     .onAppear {
-                        pokeViewModel.fetchList()
+                        pokeView.fetchList()
                     }
-                if pokeViewModel.name.isEmpty {
+                if pokeView.name.isEmpty {
                     Text("Please enter a valid Pokemon name...")
                 }else{
-                    Text(pokeViewModel.name + " Found!")
+                    Text(pokeView.name + " Found!")
                     .padding()
                 }
                 HStack {
@@ -33,8 +36,10 @@ struct ListView: View {
                     //pokename is a string that will be passed into the fetch pokemon function
                     Button("Search"){
                         Task{
-                            await pokeViewModel.fetchPokemon(name: pokename)
-                            print ("\(pokeViewModel.name) fetched")
+                            await pokeView.fetchPokemon(name: pokename)
+                            
+                            print ("\(pokeView.name) fetched")
+                            
                         }
                     }
                     
@@ -42,8 +47,4 @@ struct ListView: View {
             }.padding()
             
     }
-}
-      
-#Preview {
-    ListView()
 }

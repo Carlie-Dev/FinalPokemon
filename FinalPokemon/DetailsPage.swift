@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct DetailsPage: View {
-    @StateObject var poke = PokemonViewModel()
+    init(poke: PokemonViewModel){
+        self.pokeView = poke
+    }
+    @ObservedObject var pokeView: PokemonViewModel
     
     var body: some View {
         VStack{
-            Text(poke.name).font(.title).fontWeight(.bold)
-            Text("XP: \(poke.base_experience)").font(.headline)
-            Text("Height: \(poke.height)")
-            Text("Weight: \(poke.weight)")
+            Text(pokeView.name).font(.title).fontWeight(.bold)
+            Text("XP: \(pokeView.base_experience)").font(.headline)
+            Text("Height: \(pokeView.height)")
+            Text("Weight: \(pokeView.weight)")
         }.padding(10)
         
     }
 }
 
-#Preview {
-    DetailsPage()
-}

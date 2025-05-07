@@ -44,7 +44,7 @@ class PokemonViewModel: ObservableObject{
                     self.weight = decodedResponse.weight
                     print(self.weight)
                 }
-                print(self.name)
+                
                 
             }catch {
                 print("Failed to decode: \(error)")

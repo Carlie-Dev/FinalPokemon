@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct NavView: View {
+    @ObservedObject var pokeView = PokemonViewModel()
     var body: some View {
         
         NavigationView{
             HStack{
-                NavigationLink(destination: SaveView()) {
+                NavigationLink(destination: SaveView(poke: pokeView)) {
                     Image(systemName: "list.bullet.circle")
                         .foregroundColor(.black)
                 }
-                NavigationLink(destination: ListView()) {
+                NavigationLink(destination: ListView(poke: pokeView)) {
                     Image(systemName: "house.fill")
                         .foregroundColor(.black)
                 }
-                NavigationLink(destination: DetailsPage()) {
+                NavigationLink(destination: DetailsPage(poke: pokeView)) {
                     Image(systemName: "books.vertical.fill")
                         .foregroundColor(.black)
                 }

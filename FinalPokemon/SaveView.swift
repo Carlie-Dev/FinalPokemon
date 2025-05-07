@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct SaveView: View {
-    @StateObject var pokemonViewModel = PokemonViewModel()
+    init(poke: PokemonViewModel){
+        self.pokeView = poke
+    }
+    @ObservedObject var pokeView: PokemonViewModel
     
     var body: some View {
         VStack {
-            if pokemonViewModel.pokemonList.isEmpty {
+            if pokeView.pokemonList.isEmpty {
                 Text("No Pokémon saved")
                     .foregroundColor(.black)
                     .bold()
             } else {
-                List(pokemonViewModel.pokemonList, id: \.name) { pokemon in
+                List(pokeView.pokemonList, id: \.name) { pokemon in
                     HStack {
                         Text(pokemon.name.capitalized)
                         Spacer()
@@ -29,8 +32,3 @@ struct SaveView: View {
     }
 }
 
-
-
-#Preview {
-    SaveView()
-}
